@@ -12,5 +12,8 @@ public interface TareaService {
     public TareaDTO getTarea(Long id);
 
     public List<TareaDTO> getTareas();
-    
+
+    public void deleteTarea(Long id);
+
+    public TareaDTO putTarea(Long id, TareaPostDTO tarea);
 }

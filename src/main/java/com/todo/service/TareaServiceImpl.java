@@ -8,6 +8,7 @@ import com.todo.dto.TareaDTO;
 import com.todo.dto.TareaPostDTO;
 import com.todo.mappers.TareaMapper;
 import com.todo.mappers.TareaPostMapper;
+import com.todo.modelo.Tarea;
 import com.todo.repository.TareaRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,28 @@ public class TareaServiceImpl implements TareaService {
     public List<TareaDTO> getTareas() {
         return tareasMapper.map(
             tareasRepo.findAll()
+        );
+    }
+
+    public void deleteTarea(Long id) {
+        if (!tareasRepo.existsById(id)) {
+            throw new RuntimeException();
+        }
+
+        tareasRepo.deleteById(id);
+    }
+
+
+    public TareaDTO putTarea(Long id, TareaPostDTO tareaPost) {
+        if (!tareasRepo.existsById(id)) {
+            throw new RuntimeException();
+        }
+
+        Tarea tareaNueva = tareasPostMapper.map(tareaPost);
+        tareaNueva.setId(id);
+
+        return tareasMapper.map(
+            tareasRepo.save(tareaNueva)
         );
     }
         

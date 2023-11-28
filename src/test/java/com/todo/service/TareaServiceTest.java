@@ -1,6 +1,7 @@
 package com.todo.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -110,5 +111,33 @@ public class TareaServiceTest {
         verify(tareasMapper, times(1)).map(listaTareas);
     }
 
+    @Test
+    public void testDeleteTarea() {
+        when(tareasRepo.existsById(idPrueba)).thenReturn(true);
+        doNothing().when(tareasRepo).deleteById(idPrueba);
+
+        tareaService.deleteTarea(idPrueba);
+
+        verify(tareasRepo, times(1)).existsById(idPrueba);
+        verify(tareasRepo, times(1)).deleteById(idPrueba);
+    }
+
+    @Test
+    public void testPutTarea() {
+        when(tareasRepo.existsById(idPrueba)).thenReturn(true);
+        when(tareasPostMapper.map(tareaPostDTO)).thenReturn(tarea);
+        when(tareasRepo.save(tarea)).thenReturn(tarea);
+        when(tareasMapper.map(tarea)).thenReturn(tareaDTO);
+
+        assertEquals(tareaService.putTarea(idPrueba,tareaPostDTO), tareaDTO);
+
+        
+        verify(tareasRepo, times(1)).existsById(idPrueba);
+        verify(tareasPostMapper, times(1)).map(tareaPostDTO);
+        verify(tareasRepo, times(1)).save(tarea);
+        verify(tareasMapper, times(1)).map(tarea);
+    }
+
     
+
 }
