@@ -1,5 +1,7 @@
 package com.todo.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.todo.dto.TareaDTO;
@@ -23,5 +25,18 @@ public class TareaServiceImpl implements TareaService {
             tareasRepo.save(tareasPostMapper.map(tarea))
         );
     }
+
+    public TareaDTO getTarea(Long id) {
+        return tareasMapper.map(
+            tareasRepo.findById(id).orElseThrow(RuntimeException::new)
+        );
+    }
+
+    public List<TareaDTO> getTareas() {
+        return tareasMapper.map(
+            tareasRepo.findAll()
+        );
+    }
+        
     
 }

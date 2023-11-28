@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,6 +46,7 @@ public class TareaServiceTest {
     private TareaDTO tareaDTO;
     private TareaPostDTO tareaPostDTO;
 
+    private List<Tarea> listaTareas;
     private List<TareaDTO> listaTareasDTO;
 
     private Long idPrueba;
@@ -68,7 +70,8 @@ public class TareaServiceTest {
 		tareaPostDTO = TareaPostDTO.builder()
                                     .descripcion(tarea.getDescripcion())
 						            .build();
-		
+
+        listaTareas = Arrays.asList(tarea);
 		listaTareasDTO = Arrays.asList(tareaDTO);
 	}
 
@@ -84,5 +87,28 @@ public class TareaServiceTest {
         verify(tareasRepo, times(1)).save(tarea);
         verify(tareasMapper, times(1)).map(tarea);
     }
+
+    @Test
+    public void testGetTarea() {
+        when(tareasRepo.findById(idPrueba)).thenReturn(Optional.of(tarea));
+        when(tareasMapper.map(tarea)).thenReturn(tareaDTO);
+
+        assertEquals(tareaService.getTarea(idPrueba), tareaDTO);
+
+        verify(tareasRepo, times(1)).findById(idPrueba);
+        verify(tareasMapper, times(1)).map(tarea);
+    }
+
+    @Test
+    public void testGetTareas() {
+        when(tareasRepo.findAll()).thenReturn(listaTareas);
+        when(tareasMapper.map(listaTareas)).thenReturn(listaTareasDTO);
+
+        assertEquals(tareaService.getTareas(), listaTareasDTO);
+
+        verify(tareasRepo, times(1)).findAll();
+        verify(tareasMapper, times(1)).map(listaTareas);
+    }
+
     
 }
