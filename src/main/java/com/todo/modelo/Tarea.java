@@ -1,9 +1,11 @@
 package com.todo.modelo;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +32,7 @@ public class Tarea {
     private String descripcion;
     
     @UpdateTimestamp
-    private LocalDateTime fechaCreacion;
+    private LocalDate fechaCreacion;
 
     @Builder.Default
     private Boolean finalizada = false;
