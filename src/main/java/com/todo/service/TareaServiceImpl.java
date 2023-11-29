@@ -42,7 +42,7 @@ public class TareaServiceImpl implements TareaService {
 
     public void deleteTarea(Long id) {
         if (!tareasRepo.existsById(id)) {
-            throw new RuntimeException();
+            throw new NotFoundException();
         }
 
         tareasRepo.deleteById(id);

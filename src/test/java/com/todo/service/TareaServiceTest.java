@@ -134,6 +134,16 @@ public class TareaServiceTest {
     }
 
     @Test
+    public void testDeleteTareaNoFound() {
+        when(tareasRepo.existsById(idPrueba)).thenReturn(false);
+
+        assertThrows(NotFoundException.class, () -> {tareaService.deleteTarea(idPrueba);});
+
+        verify(tareasRepo, times(1)).existsById(idPrueba);
+
+    }
+
+    @Test
     public void testPutTarea() {
         when(tareasRepo.existsById(idPrueba)).thenReturn(true);
         when(tareasPostMapper.map(tareaPostDTO)).thenReturn(tarea);
