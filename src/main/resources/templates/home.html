@@ -15,14 +15,18 @@
     <table>
         <thead>
         <tr>
-            <th>descripcion</th>
+            <th>Descripcion</th>
             <th>Creada en</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         <tr th:each="tarea: ${tareas}">
             <td th:text="${tarea.descripcion}"></td>
             <td th:text="${tarea.fechaCreacion}"></td>
-            
+            <td>
+                <a type="button" th:href="@{/tareas/editar/{id}(id = ${tarea.id})}">Editar</a>
+                <a type="button" th:href="@{/tareas/eliminar/{id} (id = ${tarea.id})}">Eliminar</a>
+            </td>
             </td>
         </tr>
     </table>

@@ -3,6 +3,7 @@ package com.todo.modelo;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Tarea {
 
     private String descripcion;
     
-    @CreationTimestamp
+    @UpdateTimestamp
     private LocalDateTime fechaCreacion;
 
     @Builder.Default
