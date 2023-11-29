@@ -67,4 +67,10 @@ public class TareaController {
         return "redirect:/tareas";
 
     }
+
+    @GetMapping("/eliminarTareas")
+    public String eliminarTareas() {
+        tareaService.deleteFinalizadas();
+        return "redirect:/tareas";
+    }
 }

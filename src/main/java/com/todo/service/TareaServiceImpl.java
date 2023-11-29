@@ -67,4 +67,8 @@ public class TareaServiceImpl implements TareaService {
         tarea.setFinalizada(!tarea.getFinalizada());
         return (tareasMapper.map(tareasRepo.save(tarea)));
     }  
+
+    public void deleteFinalizadas() {
+        tareasRepo.deleteByFinalizada(true);
+    }
 }
