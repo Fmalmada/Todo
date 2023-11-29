@@ -152,13 +152,20 @@ public class TareaServiceTest {
 
         assertEquals(tareaService.putTarea(idPrueba,tareaPostDTO), tareaDTO);
 
-        
         verify(tareasRepo, times(1)).existsById(idPrueba);
         verify(tareasPostMapper, times(1)).map(tareaPostDTO);
         verify(tareasRepo, times(1)).save(tarea);
         verify(tareasMapper, times(1)).map(tarea);
     }
 
-    
+    @Test
+    public void testPutTareaNotFound() {
+        when(tareasRepo.existsById(idPrueba)).thenReturn(false);
+
+        assertThrows(NotFoundException.class, () -> {tareaService.putTarea(idPrueba, tareaPostDTO);});
+
+        verify(tareasRepo, times(1)).existsById(idPrueba);
+
+    }
 
 }

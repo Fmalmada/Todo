@@ -51,7 +51,7 @@ public class TareaServiceImpl implements TareaService {
 
     public TareaDTO putTarea(Long id, TareaPostDTO tareaPost) {
         if (!tareasRepo.existsById(id)) {
-            throw new RuntimeException();
+            throw new NotFoundException();
         }
 
         Tarea tareaNueva = tareasPostMapper.map(tareaPost);
