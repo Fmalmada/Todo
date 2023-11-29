@@ -30,7 +30,9 @@ public class Tarea {
     
     @CreationTimestamp
     private LocalDateTime fechaCreacion;
-    private Boolean finalizada;
+
+    @Builder.Default
+    private Boolean finalizada = false;
 
     
 }

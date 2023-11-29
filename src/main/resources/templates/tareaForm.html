@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html  
+    xmls="https://www.w3.org/1999/xhtml"
+    xmlns:th="http:/ /www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Nueva tarea</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+
+    <h1>Nueva Tarea</h1>
+
+    <form method="post" th:object="${tarea}">
+        <div>
+            <label for="descripcion">Descripcion</label>
+            <input id="descripcion" th:field="*{descripcion}" name="descripcion" type="text">
+        </div>
+            <div>
+                <button>Guardar</button>
+            </div>
+         </form>
+</body>
+</html>
