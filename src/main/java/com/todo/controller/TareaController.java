@@ -63,9 +63,12 @@ public class TareaController {
     }
 
     @PostMapping("/editar/{id}")
-    public String editarTarea(Model unModelo, @PathVariable Long id,TareaPostDTO tareaPostDTO) {
-        unModelo.addAttribute("tarea", tareaService.putTarea(id, tareaPostDTO));
+    public String editarTarea(@Valid @ModelAttribute("tarea") TareaPostDTO tareaPostDTO, BindingResult resultado, @PathVariable Long id) {
+        if (resultado.hasErrors()) {
+            return "tareaForm";
+        }
 
+        tareaService.putTarea(id, tareaPostDTO);
         return "redirect:/tareas";
     }
 
