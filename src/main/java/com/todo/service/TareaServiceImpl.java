@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.todo.dto.TareaDTO;
 import com.todo.dto.TareaPostDTO;
+import com.todo.excepciones.NotFoundException;
 import com.todo.mappers.TareaMapper;
 import com.todo.mappers.TareaPostMapper;
 import com.todo.modelo.Tarea;
@@ -29,7 +30,7 @@ public class TareaServiceImpl implements TareaService {
 
     public TareaDTO getTarea(Long id) {
         return tareasMapper.map(
-            tareasRepo.findById(id).orElseThrow(RuntimeException::new)
+            tareasRepo.findById(id).orElseThrow(NotFoundException::new)
         );
     }
 

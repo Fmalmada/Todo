@@ -1,6 +1,7 @@
 package com.todo.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.todo.dto.TareaDTO;
 import com.todo.dto.TareaPostDTO;
+import com.todo.excepciones.NotFoundException;
 import com.todo.mappers.TareaMapper;
 import com.todo.mappers.TareaPostMapper;
 import com.todo.modelo.Tarea;
@@ -98,6 +100,15 @@ public class TareaServiceTest {
 
         verify(tareasRepo, times(1)).findById(idPrueba);
         verify(tareasMapper, times(1)).map(tarea);
+    }
+
+    @Test
+    public void testGetTareaNotFound() {
+        when(tareasRepo.findById(idPrueba)).thenReturn(Optional.empty());
+
+        assertThrows(NotFoundException.class, () -> {tareaService.getTarea(idPrueba);});
+
+        verify(tareasRepo, times(1)).findById(idPrueba);
     }
 
     @Test
