@@ -2,23 +2,24 @@
 <html  
     xmls="https://www.w3.org/1999/xhtml"
     xmlns:th="http:/ /www.thymeleaf.org">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Nueva tarea</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
-<body>
+<body class="p-3 mb-2 bg-dark text-white">
 
     <h1>Nueva Tarea</h1>
 
-    <form method="post" th:object="${tarea}">
+    <form class="form-group"method="post" th:object="${tarea}">
         <div>
             <label for="descripcion">Descripcion</label>
             <input id="descripcion" th:field="*{descripcion}" name="descripcion" type="text">
         </div>
             <div>
-                <button>Guardar</button>
+                <button class="btn btn-light">Guardar</button>
             </div>
          </form>
 </body>

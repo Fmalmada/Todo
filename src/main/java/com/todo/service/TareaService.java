@@ -16,4 +16,6 @@ public interface TareaService {
     public void deleteTarea(Long id);
 
     public TareaDTO putTarea(Long id, TareaPostDTO tarea);
+
+    public TareaDTO finalizarTarea(Long id);
 }

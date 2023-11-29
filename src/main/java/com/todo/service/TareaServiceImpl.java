@@ -61,6 +61,10 @@ public class TareaServiceImpl implements TareaService {
             tareasRepo.save(tareaNueva)
         );
     }
-        
-    
+
+    public TareaDTO finalizarTarea(Long id) {
+        Tarea tarea = tareasRepo.findById(id).orElseThrow(NotFoundException::new);
+        tarea.setFinalizada(!tarea.getFinalizada());
+        return (tareasMapper.map(tareasRepo.save(tarea)));
+    }  
 }

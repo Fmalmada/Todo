@@ -60,4 +60,11 @@ public class TareaController {
 
         return "redirect:/tareas";
     }
+
+    @GetMapping("/finalizar/{id}")
+    public String finalizarTarea(@PathVariable Long id) {
+        tareaService.finalizarTarea(id);
+        return "redirect:/tareas";
+
+    }
 }
