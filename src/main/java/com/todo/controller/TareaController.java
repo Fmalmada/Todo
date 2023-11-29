@@ -2,8 +2,11 @@ package com.todo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +16,7 @@ import com.todo.dto.TareaDTO;
 import com.todo.dto.TareaPostDTO;
 import com.todo.service.TareaService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -36,7 +40,11 @@ public class TareaController {
     }
 
     @PostMapping("/nuevaTarea")
-    public String postTarea(Model unModelo, TareaPostDTO tareaPostDTO) {
+    public String postTarea(@Valid @ModelAttribute("tarea") TareaPostDTO tareaPostDTO, BindingResult resultado) {
+        if (resultado.hasErrors()) {
+            return "tareaForm";
+        }
+
         tareaService.postTarea(tareaPostDTO);
         return "redirect:/tareas";
     }

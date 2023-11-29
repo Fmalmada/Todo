@@ -17,6 +17,7 @@
         <div>
             <label for="descripcion">Descripcion</label>
             <input id="descripcion" th:field="*{descripcion}" name="descripcion" type="text">
+            <span class="error-message" th:if="${#fields.hasErrors('descripcion')}" th:errors = "*{descripcion}">Por favor ingrese una descripción</span>
         </div>
             <div>
                 <button class="btn btn-light">Guardar</button>
