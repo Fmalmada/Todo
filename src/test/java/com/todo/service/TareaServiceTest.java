@@ -198,7 +198,15 @@ public class TareaServiceTest {
         assertThrows(NotFoundException.class, () -> {tareaService.finalizarTarea(idPrueba);});
 
         verify(tareasRepo, times(1)).findById(idPrueba);
+    }
 
+    @Test
+    public void testDeleteTareasFinalizadas() {
+        doNothing().when(tareasRepo).deleteByFinalizada(true);
+
+        tareaService.deleteFinalizadas();
+
+        verify(tareasRepo, times(1)).deleteByFinalizada(true);
     }
 
 }
