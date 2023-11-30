@@ -165,6 +165,39 @@ public class TareaServiceTest {
         assertThrows(NotFoundException.class, () -> {tareaService.putTarea(idPrueba, tareaPostDTO);});
 
         verify(tareasRepo, times(1)).existsById(idPrueba);
+    }
+
+    @Test
+    public void testFinalizarTarea() {
+        TareaDTO tareaFinalizada = TareaDTO.builder()
+                                            .finalizada(true)
+                                            .descripcion(tarea.getDescripcion())
+                                            .build();
+
+        Tarea tareaPrueba = Tarea.builder()
+                                    .id(idPrueba)
+                                    .descripcion(tarea.getDescripcion())
+                                    .finalizada(false)
+                                    .build();
+
+        when(tareasRepo.findById(idPrueba)).thenReturn(Optional.of(tareaPrueba));
+        when(tareasRepo.save(tareaPrueba)).thenReturn(tareaPrueba);
+        when(tareasMapper.map(tareaPrueba)).thenReturn(tareaFinalizada);
+
+        assertEquals(tareaService.finalizarTarea(idPrueba),tareaFinalizada);
+
+        verify(tareasRepo,times(1)).findById(idPrueba);
+        verify(tareasRepo,times(1)).save(tareaPrueba);
+        verify(tareasMapper,times(1)).map(tareaPrueba);
+    }
+
+    @Test
+    public void testFinalizarTareaNotFound() {
+        when(tareasRepo.findById(idPrueba)).thenReturn(Optional.empty());
+
+        assertThrows(NotFoundException.class, () -> {tareaService.finalizarTarea(idPrueba);});
+
+        verify(tareasRepo, times(1)).findById(idPrueba);
 
     }
 
