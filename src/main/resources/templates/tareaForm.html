@@ -9,19 +9,24 @@
     <title>Nueva tarea</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
-<body class="p-3 mb-2 bg-dark text-white">
+<body class="p-3 mb-2 bg-dark text-white text-center">
 
-    <h1>Nueva tarea</h1>
+    
+    <div class="justify-content-center align-items-center">
+        <h1 class="cover-heading">Nueva tarea</h1>
+     </div>
+    
 
     <form class="form-group"method="post" th:object="${tarea}">
-        <div>
+        <div class="form-group">
             <label for="descripcion">Descripcion</label>
             <input id="descripcion" th:field="*{descripcion}" name="descripcion" type="text">
             <span class="error-message" th:if="${#fields.hasErrors('descripcion')}" th:errors = "*{descripcion}">Por favor ingrese una descripción</span>
         </div>
-            <div>
-                <button class="btn btn-light">Guardar</button>
-            </div>
+        <div class="form-group text-center">
+            <button class="btn btn-lg btn-secondary">Guardar</button>
+        </div>
          </form>
+       
 </body>
 </html>

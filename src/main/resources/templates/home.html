@@ -26,14 +26,14 @@
             <td th:text="${tarea.descripcion}" th:style="${tarea.finalizada} ? 'text-decoration: line-through;' : ''"></td>
             <td th:text="${tarea.fechaCreacion}"></td>
             <td>
-                <a type="button" class="btn btn-light" th:href="@{/tareas/editar/{id}(id = ${tarea.id})}">Editar</a>
-                <a type="button" class="btn btn-light" th:href="@{/tareas/eliminar/{id} (id = ${tarea.id})}">Eliminar</a>
-                <a type="button" class="btn btn-light" th:href="@{/tareas/finalizar/{id} (id = ${tarea.id})}">Finalizar</a>
+                <a type="button" class="btn btn-lg btn-secondary" th:href="@{/tareas/editar/{id}(id = ${tarea.id})}">Editar</a>
+                <a type="button" class="btn btn-lg btn-secondary" th:href="@{/tareas/eliminar/{id} (id = ${tarea.id})}">Eliminar</a>
+                <a type="button" class="btn btn-lg btn-secondary" th:href="@{/tareas/finalizar/{id} (id = ${tarea.id})}">Finalizar</a>
             </td>
             </td>
         </tr>
     </table>
-    <a type="button"  class="btn btn-light" th:href="@{/tareas/nuevaTarea}">Nueva tarea</a>
-    <a type="button"  class="btn btn-light" th:href="@{/tareas/eliminarTareas}">Eliminar tareas finalizadas</a>
+    <a type="button"  class="btn btn-lg btn-secondary" th:href="@{/tareas/nuevaTarea}">Nueva tarea</a>
+    <a type="button"  class="btn btn-lg btn-secondary" th:href="@{/tareas/eliminarTareas}">Eliminar tareas finalizadas</a>
 </body>
 </html>
