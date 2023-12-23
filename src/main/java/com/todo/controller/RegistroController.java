@@ -25,6 +25,7 @@ public class RegistroController {
     public String getRegistro(Model modelo) {
         modelo.addAttribute("usuario", new UsuarioPostDTO());
         modelo.addAttribute("noIgual", false);
+        modelo.addAttribute("existeUsuario", false);
         return "registro";
     }
 
@@ -34,11 +35,15 @@ public class RegistroController {
             return "registro";
         }
 
+        if(registroService.existeUsuario(usuarioPostDTO)){
+            modelo.addAttribute("existeUsuario", true);
+            return "registro";
+        }
+
         if (!usuarioPostDTO.getConfirmar().equals(usuarioPostDTO.getPassword())) {
             modelo.addAttribute("noIgual", true);
             return "registro";
         }
-
         registroService.crearUsuario(usuarioPostDTO);
         return "login";
     }

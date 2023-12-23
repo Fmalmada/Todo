@@ -9,4 +9,6 @@ import com.todo.modelo.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     
     public Optional<Usuario> findByUsername(String username);
+
+    public boolean existsByUsername(String username);
 }

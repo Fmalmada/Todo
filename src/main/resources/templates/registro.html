@@ -11,22 +11,24 @@
     <h1>Registro</h1>
 
     <span class="error-message" th:if="${noIgual}">Las contraseñas no coinciden</span>
+    <span class="error-message" th:if="${existeUsuario}">El usuario ya existe</span>
+
 
     <form class="form-group" method="POST" th:action="@{/tareas/registro}" th:object="${usuario}" id="usuarioPost">
     
-        <label for="username">Nombre de usuario: </label>
-        <input type="text" name="username" th:field="*{username}" /><br/>
-        <span class="error-message" th:if="${#fields.hasErrors('username')}" th:errors = "*{username}">Por favor ingrese una descripción</span>
+      <span class="error-message" th:if="${#fields.hasErrors('username')}" th:errors = "*{username}">Por favor ingrese una descripción</span>
+      <label for="username">Nombre de usuario: </label>
+      <input type="text" name="username" th:field="*{username}" /><br/>
 
+      <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors = "*{password}">Por favor ingrese una descripción</span>
 
         <label for="password">Contraseña: </label>
         <input type="password" name="password" th:field="*{password}"/><br/>
-        <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors = "*{password}">Por favor ingrese una descripción</span>
 
+        <span class="error-message" th:if="${#fields.hasErrors('confirmar')}" th:errors = "*{confirmar}">Por favor ingrese una descripción</span>
 
         <label for="confirm">Confirmar contraseña: </label>
         <input type="password" name="confirm" th:field="*{confirmar}"/><br/>
-        <span class="error-message" th:if="${#fields.hasErrors('confirmar')}" th:errors = "*{confirmar}">Por favor ingrese una descripción</span>
 
 
         <input class="btn btn-lg btn-secondary" type="submit" value="Registrarse"/>
