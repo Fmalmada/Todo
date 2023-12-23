@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+      <head>
+      <title>Tareas - Registro</title>
+      <meta charset="utf-8" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  </head>
+  
+  <body class="p-3 mb-2 bg-dark text-white text-center">
+    <h1>Registro</h1>
+
+    <span class="error-message" th:if="${noIgual}">Las contraseñas no coinciden</span>
+
+    <form class="form-group" method="POST" th:action="@{/tareas/registro}" th:object="${usuario}" id="usuarioPost">
+    
+        <label for="username">Nombre de usuario: </label>
+        <input type="text" name="username" th:field="*{username}" /><br/>
+        <span class="error-message" th:if="${#fields.hasErrors('username')}" th:errors = "*{username}">Por favor ingrese una descripción</span>
+
+
+        <label for="password">Contraseña: </label>
+        <input type="password" name="password" th:field="*{password}"/><br/>
+        <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors = "*{password}">Por favor ingrese una descripción</span>
+
+
+        <label for="confirm">Confirmar contraseña: </label>
+        <input type="password" name="confirm" th:field="*{confirmar}"/><br/>
+        <span class="error-message" th:if="${#fields.hasErrors('confirmar')}" th:errors = "*{confirmar}">Por favor ingrese una descripción</span>
+
+
+        <input class="btn btn-lg btn-secondary" type="submit" value="Registrarse"/>
+    </form>
+    
+  </body>
+</html>
