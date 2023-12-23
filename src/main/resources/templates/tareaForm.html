@@ -17,7 +17,7 @@
      </div>
     
 
-    <form class="form-group"method="post" th:object="${tarea}">
+    <form class="form-group"method="post" th:object="${tarea}" th:action="@{/tareas/nuevaTarea}">
         <div class="form-group">
             <label for="descripcion">Descripcion</label>
             <input id="descripcion" th:field="*{descripcion}" name="descripcion" type="text">
