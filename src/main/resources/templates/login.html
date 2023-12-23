@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Tareas -Inicio de sesión</title>
+    <title>Tareas - Inicio de sesión</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-</head>
-<body class="d-flex align-items-center py-4 bg-body-tertiary bg-dark text-white text-center">
 
-<main margin="auto-important" max-width="330px" class="form-signin w-100 m-auto">
+    <link rel="stylesheet" type="text/css" href="../static/css/signin.css" /></head>
 
-<h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
-<p></p>
-<p th:if="${error}" class="error-message">Nombre de usuario o contraseña erroneos</p>
-<form   display="block"
-    margin-top="0em" class="form-group align-baseline" th:action="@{/tareas/login}" method="post">
-    <div class="form-floating">
-        <label class="text-start"  for="username">Nombre de usuario</label>:
-    <input  class="form-control" type="text" id="username" name="username"  /> <br />
+
+<body class="text-center align-top bg-dark text-white" >
+
+    <form class="form-signin" th:action="@{/tareas/login}" method="post">
+        <p th:if="${error}" class="invalid-feedback">Nombre de usuario o contraseña erroneos</p>
+
+        <h1 class="h3 mb-3 font-weight-normal">Inicio de sesión</h1>
+        
+        <label class="register" for="username" >Nombre de usuario</label>:
+        <input class ="form-control" required=""type="text" id="username" name="username"/>
+        <label class="register" for="password">Contraseña</label>:
+        <input class="form-control" type="password" id="password" name="password" /> <br />
+        <div >
+            <button class="btn btn-lg btn-secondary" >Iniciar Sesión</button>
+        </div>
+        <div class="mb-3 font-weight-normal register">
+        <p  >¿No tienes usuario?, haz click <a th:href="@{/tareas/registro}">aquí</a></p>
     </div>
-    
-    <label  class="text-start" for="password">Contraseña</label>:
-    <input type="password" id="password" name="password" /> <br />
-    <div class="form-group text-center">
-        <button class="btn btn-lg btn-secondary">Iniciar Sesión</button>
-    </div>
-</form>
+    </form>
 
-<p>¿No tienes usuario?, haz click <a th:href="@{/tareas/registro}">aquí</a></p>
-</main>
 </body>
 </html>
