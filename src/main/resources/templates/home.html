@@ -35,5 +35,10 @@
     </table>
     <a type="button"  class="btn btn-lg btn-secondary" th:href="@{/tareas/nuevaTarea}">Nueva tarea</a>
     <a type="button"  class="btn btn-lg btn-secondary" th:href="@{/tareas/eliminarTareas}">Eliminar tareas finalizadas</a>
+
+    <form name="logoutForm" th:action="@{/logout}" method="post">
+        <input type="submit" value="Cerrar sesión">
+    </form>
+
 </body>
 </html>
