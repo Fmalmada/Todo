@@ -44,7 +44,9 @@ public class SecurityConfig {
                 loginConfigurer
                         .loginProcessingUrl("/tareas/login")
                         .loginPage("/tareas/login").permitAll()
-                        .failureUrl("/tareas/loginError");            }
+                        .failureUrl("/tareas/loginError")
+                        .defaultSuccessUrl("/tareas", true);            
+                    }
 			)
 			.logout((logout) -> logout.permitAll());
 
