@@ -5,30 +5,31 @@
       <title>Tareas - Registro</title>
       <meta charset="utf-8" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-  </head>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/signin.css}" /></head>
+    </head>
   
-  <body class="p-3 mb-2 bg-dark text-white text-center">
-    <h1>Registro</h1>
-
-    <span class="error-message" th:if="${noIgual}">Las contraseñas no coinciden</span>
-    <span class="error-message" th:if="${existeUsuario}">El usuario ya existe</span>
-
-
-    <form class="form-group" method="POST" th:action="@{/tareas/registro}" th:object="${usuario}" id="usuarioPost">
+  <body class="text-center align-top bg-dark text-white">
     
-      <span class="error-message" th:if="${#fields.hasErrors('username')}" th:errors = "*{username}">Por favor ingrese una descripción</span>
-      <label for="username">Nombre de usuario: </label>
-      <input type="text" name="username" th:field="*{username}" /><br/>
 
-      <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors = "*{password}">Por favor ingrese una descripción</span>
+    <form class="form-signin" method="POST" th:action="@{/tareas/registro}" th:object="${usuario}" id="usuarioPost">
+    
+      <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
+      <br>
+    <span class="alert alert-danger" th:if="${noIgual}">Las contraseñas no coinciden</span>
+    <span class="alert alert-danger" th:if="${existeUsuario}">El usuario ya existe</span><br><br>
 
-        <label for="password">Contraseña: </label>
-        <input type="password" name="password" th:field="*{password}"/><br/>
 
-        <span class="error-message" th:if="${#fields.hasErrors('confirmar')}" th:errors = "*{confirmar}">Por favor ingrese una descripción</span>
+      <label class="register" for="username">Nombre de usuario:   </label>
+      <span class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors = "*{username}">Por favor ingrese una descripción</span>
+      <input  class="form-control" required="true"type="text" name="username" th:field="*{username}" />
 
-        <label for="confirm">Confirmar contraseña: </label>
-        <input type="password" name="confirm" th:field="*{confirmar}"/><br/>
+
+        <label class="register" for="password">Contraseña: </label>
+        <span class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors = "*{password}">Por favor ingrese una descripción</span>
+        <input  class="form-control" required="true" type="password" name="password" th:field="*{password}"/>
+        <label  class="register" for="confirm">Confirmar contraseña: </label>
+        <span class="alert alert-danger" th:if="${#fields.hasErrors('confirmar')}" th:errors = "*{confirmar}">Por favor ingrese una descripción</span>
+        <input  class="form-control" required="true" type="password" name="confirm" th:field="*{confirmar}"/>
 
 
         <input class="btn btn-lg btn-secondary" type="submit" value="Registrarse"/>

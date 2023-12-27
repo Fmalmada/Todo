@@ -36,7 +36,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
 			.authorizeHttpRequests(authorize -> {authorize
-                .requestMatchers("/h2-console/**", "/tareas/registro").permitAll()            
+                .requestMatchers("/h2-console/**", "/tareas/registro",  "/resources/**", "/static/**", "/css/**").permitAll()            
 				.anyRequest().authenticated();
             }
 			)
@@ -53,7 +53,7 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("resources/**", "static/**", "css/**");
+        return (web) -> web.ignoring().requestMatchers("/resources/**", "/static/**", "/css/**");
     }
 }
     

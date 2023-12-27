@@ -5,16 +5,16 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="../static/css/signin.css" /></head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/signin.css}" /></head>
 
 
 <body class="text-center align-top bg-dark text-white" >
 
     <form class="form-signin" th:action="@{/tareas/login}" method="post">
-        <p th:if="${error}" class="invalid-feedback">Nombre de usuario o contraseña erroneos</p>
-
+        
         <h1 class="h3 mb-3 font-weight-normal">Inicio de sesión</h1>
         
+        <span th:if="${error}" class="alert alert-danger">Nombre de usuario o contraseña erroneos</span>
         <label class="register" for="username" >Nombre de usuario</label>:
         <input class ="form-control" required=""type="text" id="username" name="username"/>
         <label class="register" for="password">Contraseña</label>:
@@ -23,7 +23,7 @@
             <button class="btn btn-lg btn-secondary" >Iniciar Sesión</button>
         </div>
         <div class="mb-3 font-weight-normal register">
-        <p  >¿No tienes usuario?, haz click <a th:href="@{/tareas/registro}">aquí</a></p>
+        <p  >¿No tienes usuario? click <a th:href="@{/tareas/registro}">aquí</a></p>
     </div>
     </form>
 
